@@ -1,0 +1,21 @@
+{
+  "name": "dsh-billing-ledger",
+  "version": "0.1.6",
+  "description": "DSH 当前输出计费与本地模型用量账本",
+  "type": "module",
+  "main": "src/host/index.mjs",
+  "exports": {".": "./src/host/index.mjs", "./client": "./lib/client.js", "./cordis.patch.yml": "./cordis.patch.yml"},
+  "files": ["src/", "lib/", "config/", "docs/rates.md", "cordis.patch.yml", "README.md", "LICENSE"],
+  "author": "caihe-haku",
+  "repository": {"type":"git","url":"git+https://github.com/caihe-haku/dsh-billing-ledger.git"},
+  "homepage": "https://github.com/caihe-haku/dsh-billing-ledger#readme",
+  "bugs": {"url":"https://github.com/caihe-haku/dsh-billing-ledger/issues"},
+  "license": "MIT",
+  "peerDependencies": {"@deepseek-ai/dsh-llm":"0.2.1-rc.3 || 0.2.1-rc.5"},
+  "engines": {"dsh":"0.2.1-rc.3 || 0.2.1-rc.5","node":">=22.15"},
+  "scripts": {"build": "node scripts/build.mjs", "test": "node --test tests/*.test.mjs", "check": "node --check src/host/index.mjs", "release":"pwsh -NoProfile -File scripts/package-release.ps1"},
+  "dsh": {
+    "bundle": {"patch": "./cordis.patch.yml"},
+    "client": {"inject": ["@deepseek-ai/dsh-client-connection", "@deepseek-ai/dsh-client-ui-layout", "@deepseek-ai/dsh-client-ui-chat", "@deepseek-ai/dsh-client-ui-sidebar", "@deepseek-ai/dsh-client-ui-primitives"], "platform": "web"}
+  }
+}
